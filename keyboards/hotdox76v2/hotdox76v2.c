@@ -131,17 +131,22 @@ void render_layer(uint8_t layer) {
     render_layer_helper_fun(0, PSTR("LAYER:"), 12, 6);
     switch (layer) {
         case 0:
-            render_layer_helper_fun(1, PSTR("1:HOME"), 12, 6);
+            render_layer_helper_fun(1, PSTR("0:HOME"), 12, 6);
             break;
         case 1:
-            render_layer_helper_fun(1, PSTR("2:CODE"), 12, 6);
+            render_layer_helper_fun(1, PSTR("1:CODE"), 12, 6);
             break;
         case 2:
-            render_layer_helper_fun(1, PSTR("3:OFFICE"), 0, 8);
+            render_layer_helper_fun(1, PSTR("2:FUNC"), 12, 6);
             break;
         case 3:
+            render_layer_helper_fun(1, PSTR("3:GAME"), 12, 6);
+            break;
+        case 4:
+            render_layer_helper_fun(1, PSTR("4:FUNK"), 12, 6);
+            break;
         default:
-            render_layer_helper_fun(1, PSTR("4:OTHERS"), 0, 8);
+            render_layer_helper_fun(1, PSTR("OTHERS"), 12, 6);
             break;
     }
 }
@@ -165,6 +170,10 @@ void render_cur_input_helper_fun(uint8_t start_line, const char *data, uint8_t g
 }
 
 void render_cur_input(void) {
+    // The input view is stupid so never render inputs.
+    // TODO: remove input tracking entirely
+    // TODO: put something else on the right OLED screen
+    return;
     render_cur_input_helper_fun(0, "INPUTS:", 6, 7);
     if (is_keyboard_master()) {
         render_cur_input_helper_fun(1, (const char *)(m2s.current_alp), 12, 6);
